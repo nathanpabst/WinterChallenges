@@ -8,17 +8,23 @@ namespace WinterChallenges
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to the Palindrome Checker.");
-            Console.WriteLine("Enter a word or phrase to begin.");
-            Console.ReadLine();
+            while (true)
+            {
+                Console.Write("Enter a word or phrase here: ");
+                string input = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    break;
+                }
+
+                string output = Palindrome.TestForPalindrome(input);
+            }
+
+            Console.Read();
         }
 
-        //Write a method that determines whether a phrase represents a palindrome.
-        //ignore the case, spaces and punctuation from the input.
-        //use system.linq 
-         
-        private static void TestForPalindrome(string input)
-        {
-            //var prepInput = String.Join("", input.ToList().Where(char => !char.IsPunctuation(char))).Replace(" ", "").ToLower();
-        }
+        
     }
+        
 }
