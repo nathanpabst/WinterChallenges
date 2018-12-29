@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 
 
 namespace WinterChallenges
@@ -9,12 +10,21 @@ namespace WinterChallenges
         static void Main(string[] args)
         {
             string path = @"c:\Users\natha\source\repos\WinterChallenges\WinterChallenges\PizzaData\Pizza.json";
-            string[] getPizzaData = File.ReadAllLines(path);
-            foreach (string s in getPizzaData)
-            {
-                Console.WriteLine(s.ToString());
 
+            if (!File.Exists(path))
+            {
+                string createText = "Welcome to Pizza Tracker" + Environment.NewLine;
+                File.WriteAllText(path, createText);
             }
+
+            string appendText = "Extra stuff" + Environment.NewLine;
+            File.AppendAllText(path, appendText);
+
+            string readPizzaData = File.ReadAllText(path);
+            
+                Console.WriteLine(readPizzaData);
+
+            
 
             //*************PALINDROMES****************************//
             //Console.WriteLine("Welcome to the Palindrome Checker.");
