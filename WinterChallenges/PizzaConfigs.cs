@@ -8,5 +8,6 @@ namespace WinterChallenges
     class PizzaConfigs
     {
         public string[] toppings { get; set; }
+        public int count { get; set; }
     }
 }
