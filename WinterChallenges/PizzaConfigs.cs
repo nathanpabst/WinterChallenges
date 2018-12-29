@@ -5,8 +5,8 @@ using System.IO;
 
 namespace WinterChallenges
 {
-    class PizzaToppings
+    class PizzaConfigs
     {
-        
+        public string[] toppings { get; set; }
     }
 }
