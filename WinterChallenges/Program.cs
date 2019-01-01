@@ -7,34 +7,42 @@ using System.Collections.Generic;
 
 namespace WinterChallenges
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            string path = @"c:\Users\natha\source\repos\WinterChallenges\WinterChallenges\PizzaData\Pizza.json";
+            //***************************************THE JOSEPHUS PROBLEM************************************//
+            int numberOfPeeps = 10;
+            int killingInterval = 3;
+            int position = Josephus.LastPersonStanding(numberOfPeeps, killingInterval);
+            Console.WriteLine($"The last man standing is {position}.");
 
-            string readPizzaData = File.ReadAllText(path);
-            var pizzas = JsonConvert.DeserializeObject<List<PizzaConfigs>>(readPizzaData);
-            var combinations = new List<PizzaConfigs>();
-            foreach (var pizza in pizzas)
-            {
-                if (combinations.Any(c => c.toppings.All(com => pizza.toppings.Contains(com))))
-                {
-                    var configIndex = combinations.FindIndex(c => c.toppings.All(com => pizza.toppings.Contains(com)));
-                    combinations[configIndex].count++;
-                }
-                else
-                {
-                    pizza.count++;
-                    combinations.Add(pizza);
 
-                }
-            }
+            //****************************************PIZZA TRACKER******************************************//
+            //string path = @"c:\Users\natha\source\repos\WinterChallenges\WinterChallenges\PizzaData\Pizza.json";
 
-            foreach (var combination in combinations.OrderByDescending(c => c.count).Take(20)) 
-            {
-               Console.WriteLine($"{String.Join(" and ", combination.toppings)} || {combination.count} orders");
-            }
+            //string readPizzaData = File.ReadAllText(path);
+            //var pizzas = JsonConvert.DeserializeObject<List<PizzaConfigs>>(readPizzaData);
+            //var combinations = new List<PizzaConfigs>();
+            //foreach (var pizza in pizzas)
+            //{
+            //    if (combinations.Any(c => c.toppings.All(com => pizza.toppings.Contains(com))))
+            //    {
+            //        var configIndex = combinations.FindIndex(c => c.toppings.All(com => pizza.toppings.Contains(com)));
+            //        combinations[configIndex].count++;
+            //    }
+            //    else
+            //    {
+            //        pizza.count++;
+            //        combinations.Add(pizza);
+
+            //    }
+            //}
+
+            //foreach (var combination in combinations.OrderByDescending(c => c.count).Take(20)) 
+            //{
+            //   Console.WriteLine($"{String.Join(" and ", combination.toppings)} || {combination.count} orders");
+            //}
 
             //suspect that not all combinations are being represented 
 
