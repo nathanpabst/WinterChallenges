@@ -12,37 +12,49 @@ namespace WinterChallenges
         static void Main(string[] args)
         {
             //***************************************THE JOSEPHUS PROBLEM************************************//
-            int numberOfPeeps = 10;
-            int killingInterval = 3;
-            int position = Josephus.LastPersonStanding(numberOfPeeps, killingInterval);
-            Console.WriteLine($"The last man standing is {position}.");
+            //int numberOfPeeps = 10;
+            //int killingInterval = 3;
+            //int position = Josephus.LastPersonStanding(numberOfPeeps, killingInterval);
+            //Console.WriteLine($"The last man standing is {position}.");
 
 
-            //****************************************PIZZA TRACKER******************************************//
-            //string path = @"c:\Users\natha\source\repos\WinterChallenges\WinterChallenges\PizzaData\Pizza.json";
+            //****************************************PIZZA TRACKER * *****************************************//
+            string path = @"c:\Users\natha\source\repos\WinterChallenges\WinterChallenges\PizzaData\Pizza.json";
 
-            //string readPizzaData = File.ReadAllText(path);
-            //var pizzas = JsonConvert.DeserializeObject<List<PizzaConfigs>>(readPizzaData);
-            //var combinations = new List<PizzaConfigs>();
-            //foreach (var pizza in pizzas)
-            //{
-            //    if (combinations.Any(c => c.toppings.All(com => pizza.toppings.Contains(com))))
-            //    {
-            //        var configIndex = combinations.FindIndex(c => c.toppings.All(com => pizza.toppings.Contains(com)));
-            //        combinations[configIndex].count++;
+            string readPizzaData = File.ReadAllText(path);
+            var pizzas = JsonConvert.DeserializeObject<List<PizzaConfigs>>(readPizzaData);
+            var combinations = new List<PizzaConfigs>();
+            //var pizzas = new List<PizzaConfigs> {
+            //    new PizzaConfigs {
+            //        toppings = new string[] {
+            //            "pepperoni", "sausage"
+            //        }
+            //    },
+            //    new PizzaConfigs {
+            //        toppings = new string[] {
+            //            "sausage", "pepperoni"
+            //        }
             //    }
-            //    else
-            //    {
-            //        pizza.count++;
-            //        combinations.Add(pizza);
+            //};
+            foreach (var pizza in pizzas)
+            {
+                if (combinations.Any(c => c.toppings.All(topping => pizza.toppings.Contains(topping))))
+                {
+                    var configIndex = combinations.FindIndex(c => c.toppings.All(topping => pizza.toppings.Contains(topping)));
+                    combinations[configIndex].count++;
+                }
+                else
+                {
+                    pizza.count++;
+                    combinations.Add(pizza);
 
-            //    }
-            //}
+                }
+            }
 
-            //foreach (var combination in combinations.OrderByDescending(c => c.count).Take(20)) 
-            //{
-            //   Console.WriteLine($"{String.Join(" and ", combination.toppings)} || {combination.count} orders");
-            //}
+            foreach (var combination in combinations.OrderByDescending(c => c.count).Take(20))
+            {
+                Console.WriteLine($"{String.Join(" and ", combination.toppings)} || {combination.count} orders");
+            }
 
             //suspect that not all combinations are being represented 
 
