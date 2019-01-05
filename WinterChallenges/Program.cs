@@ -12,18 +12,19 @@ namespace WinterChallenges
         static void Main(string[] args)
         {
             //***************************************THE JOSEPHUS PROBLEM************************************//
-            //int numberOfPeeps = 10;
-            //int killingInterval = 3;
-            //int position = Josephus.LastPersonStanding(numberOfPeeps, killingInterval);
-            //Console.WriteLine($"The last man standing is {position}.");
+            int numberOfPeeps = 11;
+            int killingInterval = 3;
+            int position = Josephus.LastPersonStanding(numberOfPeeps, killingInterval);
+            Console.WriteLine($"The last man standing is {position}.");
 
 
             //****************************************PIZZA TRACKER * *****************************************//
-            string path = @"c:\Users\natha\source\repos\WinterChallenges\WinterChallenges\PizzaData\Pizza.json";
+            //string path = @"c:\Users\natha\source\repos\WinterChallenges\WinterChallenges\PizzaData\Pizza.json";
 
-            string readPizzaData = File.ReadAllText(path);
-            var pizzas = JsonConvert.DeserializeObject<List<PizzaConfigs>>(readPizzaData);
-            var combinations = new List<PizzaConfigs>();
+            //string readPizzaData = File.ReadAllText(path);
+            //var pizzas = JsonConvert.DeserializeObject<List<PizzaConfigs>>(readPizzaData);
+            //var combinations = new List<PizzaConfigs>();
+            //******************spot check to ensure i'm counting the inverse order of a combination properly**********//
             //var pizzas = new List<PizzaConfigs> {
             //    new PizzaConfigs {
             //        toppings = new string[] {
@@ -36,27 +37,26 @@ namespace WinterChallenges
             //        }
             //    }
             //};
-            foreach (var pizza in pizzas)
-            {
-                if (combinations.Any(c => c.toppings.All(topping => pizza.toppings.Contains(topping))))
-                {
-                    var configIndex = combinations.FindIndex(c => c.toppings.All(topping => pizza.toppings.Contains(topping)));
-                    combinations[configIndex].count++;
-                }
-                else
-                {
-                    pizza.count++;
-                    combinations.Add(pizza);
+            //foreach (var pizza in pizzas)
+            //{
+            //    if (combinations.Any(c => c.toppings.All(topping => pizza.toppings.Contains(topping))))
+            //    {
+            //        var configIndex = combinations.FindIndex(c => c.toppings.All(topping => pizza.toppings.Contains(topping)));
+            //        combinations[configIndex].count++;
+            //    }
+            //    else
+            //    {
+            //        pizza.count++;
+            //        combinations.Add(pizza);
 
-                }
-            }
+            //    }
+            //}
 
-            foreach (var combination in combinations.OrderByDescending(c => c.count).Take(20))
-            {
-                Console.WriteLine($"{String.Join(" and ", combination.toppings)} || {combination.count} orders");
-            }
+            //foreach (var combination in combinations.OrderByDescending(c => c.count).Take(20))
+            //{
+            //    Console.WriteLine($"{String.Join(" and ", combination.toppings)} || {combination.count} orders");
+            //}
 
-            //suspect that not all combinations are being represented 
 
 
             //*************PALINDROMES****************************//

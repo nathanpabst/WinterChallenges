@@ -15,7 +15,10 @@ namespace WinterChallenges
             if (numberOfPeeps == 1)
                 return 1;
             else
-                return (LastPersonStanding(numberOfPeeps - 1, killingInterval) + killingInterval - 1) % numberOfPeeps + 1;
+            {
+                var latestKilling = LastPersonStanding(numberOfPeeps - 1, killingInterval);
+                return (latestKilling + killingInterval - 1) % numberOfPeeps + 1;
+            }
         }
 
         //REFACTOR CODE TO DISPLAY THE DECEASED IN PARENTHESIS 
